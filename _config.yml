@@ -99,5 +99,5 @@ theme: fluid
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://ACCESS_TOKEN@wangchristine.github.io/soho.git
+  repo: https://wangchristine.github.io/soho.git
   branch: gh-pages
