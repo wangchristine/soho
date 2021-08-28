@@ -23,16 +23,23 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Clone source
         uses: actions/checkout@v2
+        with:
+          ref: master
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
           node-version: '12'
-          
+
+      - name: Set Env
+        env: 
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}  
+        run: |
+          sed -i "s/ACCESS_TOKEN/$ACCESS_TOKEN/g" ./_config.yml
+
       # Runs a set of commands using the runners shell
       - name: Deploy Hexo
         run: |
           npm install hexo-cli -g
           npm install
-          hexo generate
-          ls -R public/
+          hexo clean && hexo g && hexo d
